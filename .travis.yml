@@ -1,0 +1,22 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t trishulb/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run trishulb/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t trishulb/multi-client ./client
+  - docker build -t trishulb/multi-nginx ./nginx
+  - docker build -t trishulb/multi-server ./server
+  - docker build -t trishulb/multi-worker ./worker
+# Log in into docker CLI
+  echo "$DOCKER_PASSWORD"| docker login -u "$DOCKER_ID" --password-stdin
+# take those imagases and push them to docker hub
+  - docker push trishulb/multi-client
+  - docker push trishulb/multi-nginx
+  - docker push trishulb/multi-server
+  - docker push trishulb/multi-worker
