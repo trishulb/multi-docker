@@ -14,7 +14,7 @@ after_success:
   - docker build -t trishulb/multi-server ./server
   - docker build -t trishulb/multi-worker ./worker
 # Log in into docker CLI
-  echo "$DOCKER_PASSWORD"| docker login -u "$DOCKER_ID" --password-stdin
+  - echo "$DOCKER_PASSWORD"| docker login -u "$DOCKER_ID" --password-stdin
 # take those imagases and push them to docker hub
   - docker push trishulb/multi-client
   - docker push trishulb/multi-nginx
