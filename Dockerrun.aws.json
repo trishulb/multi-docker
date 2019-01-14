@@ -9,8 +9,8 @@
     "memory":128
    },
    {
-    "name": "service",
-    "image": "trishulb/multi-service",
+    "name": "server",
+    "image": "trishulb/multi-server",
     "hostname": "api",
     "essential":false,
     "memory":128
@@ -33,7 +33,7 @@
        "containerPort":80
       } 
     ],
-    "links": ["client","service"],
+    "links": ["client","server"],
     "memory":128
    }
 
