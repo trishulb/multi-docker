@@ -5,19 +5,22 @@
     "name": "client",
     "image": "trishulb/multi-client",
     "hostname": "client",
-    "essential": false
+    "essential": false,
+    "memory":128
    },
    {
     "name": "service",
     "image": "trishulb/multi-service",
     "hostname": "api",
-    "essential":false 
+    "essential":false,
+    "memory":128
    },
    {
     "name": "worker",
     "image":"trishulb/multi-worker",
     "hostname": "worker",
-    "essential": false
+    "essential": false,
+    "memory":128
     },
    {
     "name": "nginx",
@@ -26,11 +29,12 @@
     "essential": true,
     "portMappings": [
       {
-       "hostport":80,
-       "containerport":80 
+       "hostPort":80,
+       "containerPort":80
       } 
     ],
-    "link": ["client","server"]
+    "links": ["client","server"],
+    "memory":128
    }
 
   
