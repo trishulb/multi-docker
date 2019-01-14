@@ -1,0 +1,38 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+   {
+    "name": "client",
+    "image": "trishulb/multi-client",
+    "hostname": "client",
+    "essential": false
+   },
+   {
+    "name": "service",
+    "image": "trishulb/multi-service",
+    "hostname": "api",
+    "essential":false 
+   },
+   {
+    "name": "worker",
+    "image":"trishulb/multi-worker",
+    "hostname": "worker",
+    "essential": false
+    },
+   {
+    "name": "nginx",
+    "image": "trishulb/multi-nginx",
+    "hostname": "nginx",
+    "essential": true,
+    "portMappings": [
+      {
+       "hostport":80,
+       "containerport":80 
+      } 
+    ],
+    "link": ["client","server"]
+   }
+
+  
+  ]
+}
